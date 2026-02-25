@@ -1,3 +1,7 @@
+# Instructions for Cobble Inference
+
+We are currently on a new fresh fork of llama.cpp. We are working on implementing changes to the codebase which will enhance performance on gfx906 (AMD Radeon Mi50 Cards and Vega VII cards). Whenever you make a change, make sure it will only apply to gfx906. All other architectures should remain unaffected. Use conditional logic everywhere you make changes.
+
 # Instructions for llama.cpp
 
 > [!IMPORTANT]

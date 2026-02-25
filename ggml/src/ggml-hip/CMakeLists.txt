@@ -52,6 +52,13 @@ message(STATUS "HIP and hipBLAS found")
 # Workaround old compilers
 set(CMAKE_HIP_FLAGS "${CMAKE_HIP_FLAGS} --gpu-max-threads-per-block=1024")
 
+# Optimization for gfx906 (Radeon MI50 / Vega VII) - fast math flags
+if ("${CMAKE_HIP_ARCHITECTURES}" MATCHES "gfx906")
+    if (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
+        set(CMAKE_HIP_FLAGS "${CMAKE_HIP_FLAGS} -ffast-math -ffp-contract=fast")
+    endif()
+endif()
+
 file(GLOB   GGML_HEADERS_ROCM "../ggml-cuda/*.cuh")
 list(APPEND GGML_HEADERS_ROCM "../../include/ggml-cuda.h")
 
